@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: platforms-depl
+  name: platforms-deployment
 spec:
   replicas: 1
   selector:
@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: platform-service
-          image: platform-service
+          image: dyrxx/platform-service

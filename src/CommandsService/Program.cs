@@ -1,6 +1,6 @@
 using Carter;
 
-using MicroServicesDemo.PlatformService.ServiceInstaller;
+using MicroServicesDemo.CommandsService.ServiceInstaller;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,16 +10,10 @@ builder.Services
        .AddI18n()
        .AddMapper()
        .AddValidator()
-       .AddLog();
+       .AddLog()
+       .AddRepository();
 
 var app = builder.Build();
-
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.UseI18n();
 

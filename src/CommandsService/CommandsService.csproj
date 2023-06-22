@@ -7,8 +7,6 @@
         <ServerGarbageCollection>false</ServerGarbageCollection>
         <InvariantGlobalization>true</InvariantGlobalization>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <UserSecretsId>cb47fb34-68ba-4f96-b5a3-c8063352bbb7</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>

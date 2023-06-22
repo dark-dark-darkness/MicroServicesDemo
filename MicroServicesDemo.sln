@@ -10,11 +10,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5F5EE37E-9BB0-4C24-8364-FAB7BFE45858}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "container", "container", "{D25DF1FF-26C9-4173-8DA3-502DAB46F34E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{A1932F99-171B-4E62-ACE5-52ABF65E792E}"
 	ProjectSection(SolutionItems) = preProject
-		container\platforms-depl.yaml = container\platforms-depl.yaml
-		container\docker-compose.yml = container\docker-compose.yml
+		k8s\platforms-deployment.yaml = k8s\platforms-deployment.yaml
+		k8s\platforms-np-service.yaml = k8s\platforms-np-service.yaml
+		.dockerignore = .dockerignore
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandsService", "src\CommandsService\CommandsService.csproj", "{3D9DDD4E-0030-4CC7-9C18-4227089CEAA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,8 +29,13 @@ Global
 		{7E5FF2EC-6F9D-4154-9ADF-C5F83DE789CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E5FF2EC-6F9D-4154-9ADF-C5F83DE789CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E5FF2EC-6F9D-4154-9ADF-C5F83DE789CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D9DDD4E-0030-4CC7-9C18-4227089CEAA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D9DDD4E-0030-4CC7-9C18-4227089CEAA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D9DDD4E-0030-4CC7-9C18-4227089CEAA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D9DDD4E-0030-4CC7-9C18-4227089CEAA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7E5FF2EC-6F9D-4154-9ADF-C5F83DE789CD} = {5F5EE37E-9BB0-4C24-8364-FAB7BFE45858}
+		{3D9DDD4E-0030-4CC7-9C18-4227089CEAA6} = {5F5EE37E-9BB0-4C24-8364-FAB7BFE45858}
 	EndGlobalSection
 EndGlobal
