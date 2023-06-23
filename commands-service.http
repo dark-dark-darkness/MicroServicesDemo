@@ -1,0 +1,4 @@
+GET {{HostAddress}}/commands/platforms
+Accept: application/json
+
+###

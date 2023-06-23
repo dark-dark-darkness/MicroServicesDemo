@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: platforms-deployment
+    name: commands-deployment
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: platforms-service
+            app: commands-service
     template:
         metadata:
             labels:
-                app: platforms-service
+                app: commands-service
         spec:
             containers:
-                -   name: platforms-service
-                    image: dyrxx/platforms-service
+                -   name: commands-service
+                    image: dyrxx/commands-service
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: platforms-cluster-ip-service
+    name: commands-cluster-ip-service
 spec:
     type: ClusterIP
     selector:
-        app: platforms-service
+        app: commands-service
     ports:
-        -   name: platforms-service
+        -   name: commands-service
             port: 8080
             protocol: TCP
             targetPort: 8080

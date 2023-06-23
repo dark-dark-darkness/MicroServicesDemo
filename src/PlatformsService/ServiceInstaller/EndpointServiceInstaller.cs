@@ -2,11 +2,11 @@
 
 using Microsoft.OpenApi.Models;
 
-namespace MicroServicesDemo.CommandsService.ServiceInstaller;
+namespace MicroServicesDemo.PlatformsService.ServiceInstaller;
 
-public static class ApiServiceInstaller
+public static class EndpointServiceInstaller
 {
-    public static IServiceCollection AddApi(this IServiceCollection services)
+    public static IServiceCollection AddEndpoints(this IServiceCollection services)
     {
 
         // Add services to the container.

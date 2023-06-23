@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <ServerGarbageCollection>false</ServerGarbageCollection>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <UserSecretsId>cb47fb34-68ba-4f96-b5a3-c8063352bbb7</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -38,10 +39,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\PlatformsService.Shared\PlatformsService.Shared.csproj"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <_ContentIncludedByDefault Remove="https\http-client.env.json"/>
     </ItemGroup>
 
 </Project>

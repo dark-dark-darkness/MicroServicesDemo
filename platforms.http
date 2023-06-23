@@ -1,0 +1,26 @@
+﻿GET {{HostAddress}}/platforms/10
+Accept-Language: {{Lang}}
+
+###
+GET {{HostAddress}}/platforms
+Accept-Language: {{Lang}}
+
+###
+
+POST {{HostAddress}}/platforms
+Content-Type: application/json
+Accept-Language: {{Lang}}
+
+{
+  "Name": "Ubuntu",
+  "Publisher": "GNU/Linux",
+  "Cost": "Free"
+}
+
+###
+
+DELETE {{HostAddress}}/platforms/1
+Accept-Language: {{Lang}}
+
+
+###
