@@ -32,13 +32,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="..\..\.dockerignore">
-            <Link>Properties\.dockerignore</Link>
-        </Content>
+        <ProjectReference Include="..\PlatformsService.Shared\PlatformsService.Shared.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\PlatformsService.Shared\PlatformsService.Shared.csproj"/>
+        <Content Include="..\..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
     </ItemGroup>
 
 </Project>

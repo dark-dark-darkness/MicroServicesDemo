@@ -1,4 +1,13 @@
-GET {{HostAddress}}/commands/platforms
+GET {{HostAddress}}/api/commands/platforms
 Accept: application/json
+
+###
+
+POST {{HostAddress}}/api/commands/platforms
+Accept: application/json
+
+{
+
+}
 
 ###

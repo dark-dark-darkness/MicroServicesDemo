@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
        .AddApi()
-       .AddDatabase()
+        //.AddDatabase(builder.Configuration, builder.Environment)
        .AddI18n()
        .AddMapper()
        .AddValidator()

@@ -31,17 +31,17 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="..\..\.dockerignore">
-            <Link>Properties\.dockerignore</Link>
-        </Content>
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\PlatformsService.Shared\PlatformsService.Shared.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
         <_ContentIncludedByDefault Remove="https\http-client.env.json"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
     </ItemGroup>
 
 </Project>
