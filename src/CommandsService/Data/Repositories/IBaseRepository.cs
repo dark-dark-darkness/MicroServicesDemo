@@ -11,7 +11,7 @@ public interface IBaseRepository<TEntity, in TId>
 
     IQueryable<TEntity> AsQueryable();
 
-    Task AddAsync(TEntity platform, CancellationToken cancellationToken = default);
+    Task AddAsync(TEntity entity, CancellationToken cancellationToken = default);
 
-    Task RemoveAsync(TEntity platform, CancellationToken cancellationToken = default);
+    Task RemoveAsync(TEntity entity, CancellationToken cancellationToken = default);
 }

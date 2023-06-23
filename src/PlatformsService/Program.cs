@@ -12,7 +12,8 @@ builder.Services
        .AddValidator()
        .AddLog()
        .AddClients()
-       .AddRepository();
+       .AddRepository()
+       .AddMassTransitForRabbitMQ(builder.Configuration);
 
 var app = builder.Build();
 

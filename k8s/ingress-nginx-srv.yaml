@@ -1,7 +1,7 @@
 ﻿apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: ingress-service
+    name: ingress-nginx-srv
     annotations:
         nginx.ingress.kubernetes.io/user-regex: 'true'
 spec:
@@ -14,14 +14,24 @@ spec:
                         pathType: Prefix
                         backend:
                             service:
-                                name: platforms-cluster-ip-service
+                                name: platforms-cluster-ip-srv
                                 port:
                                     number: 8080
                     
-                    -   path: /api/commands
+                    -   path: /api/c
                         pathType: Prefix
                         backend:
                             service:
-                                name: commands-cluster-ip-service
+                                name: commands-cluster-ip-srv
                                 port:
                                     number: 8080
+        -   host: microservices-demo-seq.com
+            http:
+                paths:
+                    -   path: /
+                        pathType: Prefix
+                        backend:
+                            service:
+                                name: seq-cluster-ip-srv
+                                port:
+                                    number: 80

@@ -1,0 +1,25 @@
+GET {{HostAddress}}/api/c/platforms/08db72726ae3bbc500155dd9eab40000/commands
+Accept: application/json
+
+###
+
+GET {{HostAddress}}/api/c/platforms/08db72726ae3bbc500155dd9eab40000/commands/8bc37f22429d4f259bc3634d389007b4
+Accept: application/json
+
+###
+
+POST {{HostAddress}}/api/c/platforms/08db72726ae3bbc500155dd9eab40000/commands
+Content-Type: application/json
+
+{
+  "HowTo": "Build a .net project",
+  "CommandLine": "about build"
+}
+
+###
+
+
+GET {{HostAddress}}/api/c/platforms
+Accept: application/json
+
+###

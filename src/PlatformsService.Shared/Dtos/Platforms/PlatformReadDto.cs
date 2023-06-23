@@ -1,4 +1,4 @@
-﻿namespace MicroServicesDemo.PlatformService.Shared.Dtos.Platforms;
+﻿namespace MicroServicesDemo.PlatformsService.Shared.Dtos.Platforms;
 
 public record PlatformReadDto(
     string Id,

@@ -2,11 +2,13 @@
 
 using Mapster;
 
-using MicroServicesDemo.PlatformService.Shared.Dtos.Platforms;
+using MassTransit;
+
 using MicroServicesDemo.PlatformsService.Data.Repositories;
 using MicroServicesDemo.PlatformsService.Models;
 using MicroServicesDemo.PlatformsService.Services;
 using MicroServicesDemo.PlatformsService.Shared.Dtos.Platforms;
+using MicroServicesDemo.PlatformsService.Shared.Messages;
 
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -43,27 +45,56 @@ public class PlatformsModule : ICarterModule
                 : TypedResults.NotFound(localizer["NotFount"].Value);
     }
 
-    private static Ok<IAsyncEnumerable<PlatformReadDto>>
+    private static IAsyncEnumerable<PlatformReadDto>
             GetAll([FromServices] IPlatformRepository repository)
     {
-        return TypedResults.Ok(repository.AsQueryable()
-                                         .ProjectToType<PlatformReadDto>()
-                                         .AsAsyncEnumerable());
+        return repository
+              .AsQueryable()
+              .ProjectToType<PlatformReadDto>()
+              .AsAsyncEnumerable();
     }
 
     private static async Task<Results<Created<PlatformReadDto>, BadRequest>>
-            Create([FromBody] PlatformCreateDto dto, [FromServices] IPlatformRepository repository, [FromServices] ICommandDataClient client)
+            Create([FromBody] PlatformCreateDto dto,
+                   [FromServices] IPlatformRepository repository, [FromServices] ICommandDataClient client,
+                   [FromServices] IBus bus, [FromServices] ILogger<PlatformsModule> logger)
     {
         var e = dto.Adapt<Platform>();
         await repository.AddAsync(e);
         await repository.SaveChangesAsync();
+
         var readDto = e.Adapt<PlatformReadDto>();
-        await client.SendPlatformToCommand(readDto);
+
+        try
+        {
+            // Send Sync Message
+            await client.SendPlatformToCommand(readDto);
+        } catch (Exception exception)
+        {
+            logger.LogError(exception, "Send Sync Message Error");
+        }
+
+        try
+        {
+            //Send Async Message
+            var message = e.Adapt<PlatformPublishedMessage>(
+                new TypeAdapterConfig()
+                       .ForType<Platform, PlatformPublishedMessage>()
+                       .Map(m => m.Event, _ => "Platform_Published")
+                       .Config);
+
+            await bus.Publish(message);
+        } catch (Exception exception)
+        {
+            logger.LogError(exception, "Send Async Message Error");
+        }
+
         return TypedResults.Created($"/api/platforms/{e.Id}", readDto);
     }
 
     private static async Task<Results<Ok<PlatformReadDto>, BadRequest, NotFound<string>>>
-            Delete(Guid id, [FromServices] IPlatformRepository repository, [FromServices] IStringLocalizer localizer)
+            Delete(Guid id,
+                   [FromServices] IPlatformRepository repository, [FromServices] IStringLocalizer localizer)
     {
 
         if (await repository.GetByIdAsync(id) is not {} entity)

@@ -6,12 +6,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
        .AddApi()
-        //.AddDatabase(builder.Configuration, builder.Environment)
+       .AddDatabase(builder.Configuration, builder.Environment)
        .AddI18n()
        .AddMapper()
        .AddValidator()
        .AddLog()
-       .AddRepository();
+       .AddRepository()
+       .AddMassTransitForRabbitMQ(builder.Configuration);
 
 var app = builder.Build();
 

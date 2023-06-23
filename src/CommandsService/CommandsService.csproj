@@ -12,9 +12,15 @@
         <PackageReference Include="Carter"/>
         <PackageReference Include="EFCore.NamingConventions"/>
         <PackageReference Include="FluentValidation.AspNetCore"/>
+        <PackageReference Include="Grpc.Core.Api"/>
         <PackageReference Include="Mapster.DependencyInjection"/>
         <PackageReference Include="Mapster.EFCore"/>
-        <PackageReference Include="Mapster.Immutable"/>
+        <PackageReference Include="MassTransit.Analyzers">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="MassTransit.AspNetCore"/>
+        <PackageReference Include="MassTransit.RabbitMQ"/>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
@@ -22,15 +28,16 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="My.Extensions.Localization.Json"/>
-        <PackageReference Include="NewId"/>
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL"/>
         <PackageReference Include="Refit.HttpClientFactory"/>
         <PackageReference Include="Serilog.AspNetCore"/>
         <PackageReference Include="Serilog.Sinks.Async"/>
+        <PackageReference Include="Serilog.Sinks.Seq"/>
         <PackageReference Include="Swashbuckle.AspNetCore"/>
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\CommandsService.Shared\CommandsService.Shared.csproj"/>
         <ProjectReference Include="..\PlatformsService.Shared\PlatformsService.Shared.csproj"/>
     </ItemGroup>
 

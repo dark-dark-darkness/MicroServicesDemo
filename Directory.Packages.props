@@ -3,32 +3,32 @@
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     </PropertyGroup>
     <ItemGroup>
-        <PackageVersion Include="Carter" Version="7.1.0"/>
-        <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.0"/>
-        <PackageVersion Include="Mapster.DependencyInjection" Version="1.0.1-pre02"/>
-        <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0-preview.5.23302.2"/>
-        <PackageVersion Include="My.Extensions.Localization.Json" Version="3.1.0"/>
-        <PackageVersion Include="Refit.HttpClientFactory" Version="6.5.1"/>
-        <PackageVersion Include="Serilog.AspNetCore" Version="7.0.0"/>
-        <PackageVersion Include="Serilog.Sinks.Async" Version="1.5.0"/>
-        <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
-        <PackageVersion Include="AutoBogus" Version="2.13.1"/>
-        <PackageVersion Include="DryIoc" Version="5.4.0"/>
-        <PackageVersion Include="DryIoc.dll" Version="5.4.0"/>
-        <PackageVersion Include="FluentAssertions" Version="6.11.0"/>
-        <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2"/>
-        <PackageVersion Include="LanguageExt.Core" Version="4.4.3"/>
-        <PackageVersion Include="Mapster" Version="7.3.0"/>
-        <PackageVersion Include="Mapster.Async" Version="2.0.0"/>
-        <PackageVersion Include="Mapster.EFCore" Version="5.1.0"/>
-        <PackageVersion Include="Mapster.Immutable" Version="1.0.0"/>
-        <PackageVersion Include="Mediator.Abstractions" Version="2.1.1"/>
+      <PackageVersion Include="Carter" Version="7.1.0"/>
+      <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.0"/>
+      <PackageVersion Include="Grpc.Common.Api" Version="2.54.0"/>
+      <PackageVersion Include="Grpc.Core.Api" Version="2.54.0"/>
+      <PackageVersion Include="Grpc.Net.Common" Version="2.54.0"/>
+      <PackageVersion Include="Grpc.Tools" Version="2.55.1"/>
+      <PackageVersion Include="Mapster.DependencyInjection" Version="1.0.1-pre02"/>
+      <PackageVersion Include="MassTransit.Analyzers" Version="8.0.16"/>
+      <PackageVersion Include="MassTransit.AspNetCore" Version="7.3.1"/>
+      <PackageVersion Include="MassTransit.Extensions.DependencyInjection" Version="7.3.1"/>
+      <PackageVersion Include="MassTransit.RabbitMQ" Version="8.0.16"/>
+      <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0-preview.5.23302.2"/>
+      <PackageVersion Include="My.Extensions.Localization.Json" Version="3.1.0"/>
+      <PackageVersion Include="Refit.HttpClientFactory" Version="6.5.1"/>
+      <PackageVersion Include="Serilog.AspNetCore" Version="7.0.0"/>
+      <PackageVersion Include="Serilog.Sinks.Async" Version="1.5.0"/>
+      <PackageVersion Include="Serilog.Sinks.Seq" Version="5.2.2"/>
+      <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
+      <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2"/>
+      <PackageVersion Include="Mapster.EFCore" Version="5.1.0"/>
+      <PackageVersion Include="Mediator.Abstractions" Version="2.1.1"/>
         <PackageVersion Include="Mediator.SourceGenerator" Version="2.1.1"/>
         <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.4"/>
         <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0"/>
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.6.0"/>
         <PackageVersion Include="Moq" Version="4.18.4"/>
-        <PackageVersion Include="NewId" Version="4.0.1"/>
         <PackageVersion Include="xunit" Version="2.4.2"/>
         <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5"/>
         <PackageVersion Include="coverlet.collector" Version="6.0.0">
@@ -41,8 +41,5 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageVersion>
         <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4"/>
-        <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0-preview.4.23260.4"/>
-        <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0-preview.4.23260.4"/>
-        <PackageVersion Include="Yitter.IdGenerator" Version="1.0.14"/>
     </ItemGroup>
 </Project>

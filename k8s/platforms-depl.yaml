@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: platforms-deployment
+    name: platforms-depl
 spec:
     replicas: 1
     selector:
@@ -19,7 +19,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: platforms-cluster-ip-service
+    name: platforms-cluster-ip-srv
 spec:
     type: ClusterIP
     selector:

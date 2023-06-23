@@ -1,4 +1,4 @@
-﻿using MicroServicesDemo.PlatformService.Shared.Dtos.Platforms;
+﻿using MicroServicesDemo.PlatformsService.Shared.Dtos.Platforms;
 
 using Refit;
 

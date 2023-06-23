@@ -1,43 +1,50 @@
-﻿namespace MicroServicesDemo.CommandsService.Data.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace MicroServicesDemo.CommandsService.Data.Repositories;
 
 public class BaseRepository<TEntity, TId> : IBaseRepository<TEntity, TId>
         where TEntity : class
 {
-    protected readonly AppDbContext _db;
+    protected readonly AppDbContext db;
 
-    protected BaseRepository(AppDbContext db)
+    private DbSet<TEntity>? _entitySet;
+
+
+    public BaseRepository(AppDbContext db)
     {
-        _db = db;
+        this.db = db;
     }
+
+    private DbSet<TEntity> EntitySet => _entitySet ??= db.Set<TEntity>();
 
     public async Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        return await _db.SaveChangesAsync(cancellationToken) != 0;
+        return await db.SaveChangesAsync(cancellationToken) != 0;
     }
 
     public IAsyncEnumerable<TEntity> GetAllAsync(CancellationToken cancellationToken = default)
     {
-        return _db.Set<TEntity>().AsAsyncEnumerable();
+        return EntitySet.AsAsyncEnumerable();
     }
 
     public async Task<TEntity?> GetByIdAsync(TId id, CancellationToken cancellationToken = default)
     {
-        return await _db.Set<TEntity>().FindAsync(new[] { id }, cancellationToken);
+        return await EntitySet.FindAsync(new[] { id }, cancellationToken);
     }
 
     public IQueryable<TEntity> AsQueryable()
     {
-        return _db.Set<TEntity>();
+        return EntitySet;
     }
 
     public async Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
-        await _db.Set<TEntity>().AddAsync(entity, cancellationToken);
+        await EntitySet.AddAsync(entity, cancellationToken);
     }
 
     public Task RemoveAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
-        _db.Set<TEntity>().Remove(entity);
+        EntitySet.Remove(entity);
         return Task.CompletedTask;
     }
 }

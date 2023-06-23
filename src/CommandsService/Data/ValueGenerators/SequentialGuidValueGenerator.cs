@@ -3,9 +3,9 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 
-namespace MicroServicesDemo.PlatformService.Data.ValueGenerators;
+namespace MicroServicesDemo.CommandsService.Data.ValueGenerators;
 
-public class SequentialGuidValueGenerator : ValueGenerator<Guid>
+public sealed class SequentialGuidValueGenerator : ValueGenerator<Guid>
 {
 
     /// <summary>
@@ -21,7 +21,7 @@ public class SequentialGuidValueGenerator : ValueGenerator<Guid>
     ///         key which are saved to the database.
     ///     </para>
     ///     <para>
-    ///         See <see href="https://aka.ms/efcore-docs-value-generation">EF Core value generation</see> for more information
+    ///         See <see href="https://aka.ms/efcore-docs-value-generation">EF Common value generation</see> for more information
     ///         and examples.
     ///     </para>
     /// </remarks>
@@ -31,7 +31,7 @@ public class SequentialGuidValueGenerator : ValueGenerator<Guid>
     ///     Template method to be overridden by implementations to perform value generation.
     /// </summary>
     /// <remarks>
-    ///     See <see href="https://aka.ms/efcore-docs-value-generation">EF Core value generation</see> for more information and
+    ///     See <see href="https://aka.ms/efcore-docs-value-generation">EF Common value generation</see> for more information and
     ///     examples.
     /// </remarks>
     /// <param name="entry">The change tracking entry of the entity for which the value is being generated.</param>

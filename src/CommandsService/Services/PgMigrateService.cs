@@ -28,7 +28,6 @@ sealed class PgMigrateService : BackgroundService
             } catch (Exception e)
             {
                 _logger.LogError(e, "can not migration");
-                throw;
             }
         }
     }

@@ -1,13 +1,13 @@
-﻿GET {{HostAddress}}/platforms/10
+﻿GET {{HostAddress}}/api/platforms/08db7272-6ae3-bbc5-0015-5dd9eab40000
 Accept-Language: {{Lang}}
 
 ###
-GET {{HostAddress}}/platforms
+GET {{HostAddress}}/api/platforms
 Accept-Language: {{Lang}}
 
 ###
 
-POST {{HostAddress}}/platforms
+POST {{HostAddress}}/api/platforms
 Content-Type: application/json
 Accept-Language: {{Lang}}
 
@@ -19,7 +19,7 @@ Accept-Language: {{Lang}}
 
 ###
 
-DELETE {{HostAddress}}/platforms/1
+DELETE {{HostAddress}}/api/platforms/1
 Accept-Language: {{Lang}}
 
 
