@@ -16,7 +16,7 @@ spec:
                             service:
                                 name: platforms-cluster-ip-srv
                                 port:
-                                    number: 8080
+                                    name: "restful"
                     
                     -   path: /api/c
                         pathType: Prefix
@@ -24,7 +24,8 @@ spec:
                             service:
                                 name: commands-cluster-ip-srv
                                 port:
-                                    number: 8080
+                                    name: "restful"
+        
         -   host: microservices-demo-seq.com
             http:
                 paths:
@@ -34,4 +35,4 @@ spec:
                             service:
                                 name: seq-cluster-ip-srv
                                 port:
-                                    number: 80
+                                    name: "seq-ui"

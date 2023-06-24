@@ -25,11 +25,11 @@ spec:
     selector:
         app: platforms-service
     ports:
-        -   name: RESTful
+        -   name: restful
             port: 8080
             protocol: TCP
             targetPort: 8080
-        -   name: gRPC
+        -   name: grpc
             port: 8888
             protocol: TCP
             targetPort: 8888
