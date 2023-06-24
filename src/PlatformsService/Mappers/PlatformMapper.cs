@@ -20,5 +20,7 @@ public static partial class PlatformMapper
     public static partial PlatformPublishedMessage MapToMessage(this Platform dto);
 
     public static partial IQueryable<PlatformReadDto> ProjectToReadDto(this IQueryable<Platform> dto);
+    
+    private static string GuidToString(Guid guid) => guid.ToString("N");
 
 }

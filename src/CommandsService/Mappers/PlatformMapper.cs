@@ -17,6 +17,4 @@ public static partial class PlatformMapper
     public static partial Platform MapToEntity(this PlatformPublishedMessage message);
 
     private static string GuidToString(Guid guid) => guid.ToString("N");
-
-
 }
