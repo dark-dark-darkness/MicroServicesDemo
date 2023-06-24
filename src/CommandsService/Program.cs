@@ -12,6 +12,8 @@ builder.Services
        .AddValidator()
        .AddLog()
        .AddRepository()
+       .AddGrpcService()
+       .AddGrpcClients()
        .AddMassTransitForRabbitMQ(builder.Configuration);
 
 var app = builder.Build();

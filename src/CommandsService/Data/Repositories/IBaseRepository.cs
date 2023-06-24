@@ -1,4 +1,6 @@
-﻿namespace MicroServicesDemo.CommandsService.Data.Repositories;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+
+namespace MicroServicesDemo.CommandsService.Data.Repositories;
 
 public interface IBaseRepository<TEntity, in TId>
         where TEntity : class
@@ -10,6 +12,8 @@ public interface IBaseRepository<TEntity, in TId>
     Task<TEntity?> GetByIdAsync(TId id, CancellationToken cancellationToken = default);
 
     IQueryable<TEntity> AsQueryable();
+
+    IDbContextTransaction BeginTransaction();
 
     Task AddAsync(TEntity entity, CancellationToken cancellationToken = default);
 

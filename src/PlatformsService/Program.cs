@@ -12,6 +12,8 @@ builder.Services
        .AddValidator()
        .AddLog()
        .AddClients()
+       .AddGrpcService()
+       .AddGrpcClients()
        .AddRepository()
        .AddMassTransitForRabbitMQ(builder.Configuration);
 
@@ -31,5 +33,7 @@ app.UseHttpLogging();
 app.UseAuthorization();
 
 app.MapCarter();
+
+app.MapGrpcServices();
 
 app.Run();

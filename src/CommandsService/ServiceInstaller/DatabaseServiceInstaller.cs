@@ -12,14 +12,9 @@ public static class DatabaseServiceInstaller
     {
         var connectionString = configuration.GetConnectionString("Default")!;
 
-        // if (environment.IsProduction())
-        // {
-        //     AddPgsql(services, connectionString);
-        // }
-        // else
-        // {
         AddSqlite(services, connectionString);
-        // }
+
+        services.AddHostedService<SyncPlatformsService>();
 
         return services;
     }

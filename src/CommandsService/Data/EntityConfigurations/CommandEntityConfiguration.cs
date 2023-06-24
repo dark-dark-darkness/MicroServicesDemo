@@ -14,7 +14,7 @@ class CommandEntityConfiguration : IEntityTypeConfiguration<Command>
                .WithMany(p => p.Commands)
                .HasForeignKey(c => c.PlatformId);
 
-        builder.HasData(GetSeedData());
+        //builder.HasData(GetSeedData());
 
     }
 

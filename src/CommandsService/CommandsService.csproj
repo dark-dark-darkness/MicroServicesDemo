@@ -9,7 +9,7 @@
         <PackageReference Include="Carter" />
         <PackageReference Include="EFCore.NamingConventions" />
         <PackageReference Include="FluentValidation.AspNetCore" />
-        <PackageReference Include="Grpc.Core.Api" />
+        <PackageReference Include="Grpc.AspNetCore.Server.ClientFactory" />
         <PackageReference Include="MassTransit.Analyzers">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

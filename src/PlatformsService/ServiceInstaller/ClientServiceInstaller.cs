@@ -11,7 +11,7 @@ public static class ClientServiceInstaller
     {
         services.AddRefitClient<ICommandDataClient>()
                 .ConfigureHttpClient((sp, c) =>
-                         c.BaseAddress = new Uri(sp.GetRequiredService<IConfiguration>()["CommandsService"]!));
+                         c.BaseAddress = new Uri(sp.GetRequiredService<IConfiguration>()["CommandsService:RESTful"]!));
 
         return services;
     }

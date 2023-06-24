@@ -4,19 +4,17 @@ using MassTransit;
 
 using MicroServicesDemo.PlatformsService.Data.Repositories;
 using MicroServicesDemo.PlatformsService.Mappers;
-using MicroServicesDemo.PlatformsService.Models;
 using MicroServicesDemo.PlatformsService.Services;
 using MicroServicesDemo.PlatformsService.Shared.Dtos.Platforms;
-using MicroServicesDemo.PlatformsService.Shared.Messages;
 
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
-namespace MicroServicesDemo.PlatformsService.Modules;
+namespace MicroServicesDemo.PlatformsService.Endpoints;
 
-public class PlatformsModule : ICarterModule
+public class PlatformsEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
@@ -56,7 +54,7 @@ public class PlatformsModule : ICarterModule
     private static async Task<Results<Created<PlatformReadDto>, BadRequest>>
             Create([FromBody] PlatformCreateDto dto,
                    [FromServices] IPlatformRepository repository, [FromServices] ICommandDataClient client,
-                   [FromServices] IBus bus, [FromServices] ILogger<PlatformsModule> logger)
+                   [FromServices] IBus bus, [FromServices] ILogger<PlatformsEndpoint> logger)
     {
         var e = dto.MapToEntity();
         await repository.AddAsync(e);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace MicroServicesDemo.CommandsService.Data.Repositories;
 
@@ -35,6 +36,11 @@ public class BaseRepository<TEntity, TId> : IBaseRepository<TEntity, TId>
     public IQueryable<TEntity> AsQueryable()
     {
         return EntitySet;
+    }
+    
+    public IDbContextTransaction BeginTransaction()
+    {
+        return db.Database.BeginTransaction();
     }
 
     public async Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)

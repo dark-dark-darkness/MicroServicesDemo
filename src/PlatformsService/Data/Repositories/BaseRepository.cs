@@ -1,43 +1,51 @@
-﻿namespace MicroServicesDemo.PlatformsService.Data.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+
+namespace MicroServicesDemo.PlatformsService.Data.Repositories;
 
 public class BaseRepository<TEntity, TId> : IBaseRepository<TEntity, TId>
         where TEntity : class
 {
-    protected readonly AppDbContext _db;
+    protected readonly AppDbContext db;
 
-    protected BaseRepository(AppDbContext db)
+    public BaseRepository(AppDbContext db)
     {
-        _db = db;
+        this.db = db;
     }
 
     public async Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        return await _db.SaveChangesAsync(cancellationToken) != 0;
+        return await db.SaveChangesAsync(cancellationToken) != 0;
     }
 
     public IAsyncEnumerable<TEntity> GetAllAsync(CancellationToken cancellationToken = default)
     {
-        return _db.Set<TEntity>().AsAsyncEnumerable();
+        return db.Set<TEntity>().AsAsyncEnumerable();
     }
 
     public async Task<TEntity?> GetByIdAsync(TId id, CancellationToken cancellationToken = default)
     {
-        return await _db.Set<TEntity>().FindAsync(new[] { id }, cancellationToken);
+        return await db.Set<TEntity>().FindAsync(new[] { id }, cancellationToken);
     }
 
     public IQueryable<TEntity> AsQueryable()
     {
-        return _db.Set<TEntity>();
+        return db.Set<TEntity>();
+    }
+
+    public IDbContextTransaction BeginTransaction()
+    {
+        return db.Database.BeginTransaction();
     }
 
     public async Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
-        await _db.Set<TEntity>().AddAsync(entity, cancellationToken);
+        await db.Set<TEntity>().AddAsync(entity, cancellationToken);
     }
 
     public Task RemoveAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
-        _db.Set<TEntity>().Remove(entity);
+        db.Set<TEntity>().Remove(entity);
         return Task.CompletedTask;
     }
 }

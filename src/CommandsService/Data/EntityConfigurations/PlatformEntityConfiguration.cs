@@ -27,8 +27,7 @@ class PlatformEntityConfiguration : IEntityTypeConfiguration<Platform>
                .WithOne(c => c.Platform)
                .HasForeignKey(c => c.PlatformId);
 
-        builder.HasData(GetSeedData());
-
+        //builder.HasData(GetSeedData());
     }
 
     private static Platform[] GetSeedData()
