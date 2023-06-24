@@ -1,10 +1,9 @@
 ﻿using Carter;
 
-using Mapster;
-
 using MassTransit;
 
 using MicroServicesDemo.PlatformsService.Data.Repositories;
+using MicroServicesDemo.PlatformsService.Mappers;
 using MicroServicesDemo.PlatformsService.Models;
 using MicroServicesDemo.PlatformsService.Services;
 using MicroServicesDemo.PlatformsService.Shared.Dtos.Platforms;
@@ -39,7 +38,7 @@ public class PlatformsModule : ICarterModule
         return await repository
                     .AsQueryable()
                     .Where(p => p.Id == id)
-                    .ProjectToType<PlatformReadDto>()
+                    .ProjectToReadDto()
                     .FirstOrDefaultAsync() is {} result
                 ? TypedResults.Ok(result)
                 : TypedResults.NotFound(localizer["NotFount"].Value);
@@ -50,7 +49,7 @@ public class PlatformsModule : ICarterModule
     {
         return repository
               .AsQueryable()
-              .ProjectToType<PlatformReadDto>()
+              .ProjectToReadDto()
               .AsAsyncEnumerable();
     }
 
@@ -59,11 +58,11 @@ public class PlatformsModule : ICarterModule
                    [FromServices] IPlatformRepository repository, [FromServices] ICommandDataClient client,
                    [FromServices] IBus bus, [FromServices] ILogger<PlatformsModule> logger)
     {
-        var e = dto.Adapt<Platform>();
+        var e = dto.MapToEntity();
         await repository.AddAsync(e);
         await repository.SaveChangesAsync();
 
-        var readDto = e.Adapt<PlatformReadDto>();
+        var readDto = e.MapToReadDto();
 
         try
         {
@@ -77,11 +76,7 @@ public class PlatformsModule : ICarterModule
         try
         {
             //Send Async Message
-            var message = e.Adapt<PlatformPublishedMessage>(
-                new TypeAdapterConfig()
-                       .ForType<Platform, PlatformPublishedMessage>()
-                       .Map(m => m.Event, _ => "Platform_Published")
-                       .Config);
+            var message = e.MapToMessage();
 
             await bus.Publish(message);
         } catch (Exception exception)
@@ -105,7 +100,7 @@ public class PlatformsModule : ICarterModule
         await repository.RemoveAsync(entity);
 
         return await repository.SaveChangesAsync()
-                ? TypedResults.Ok(entity.Adapt<PlatformReadDto>())
+                ? TypedResults.Ok(entity.MapToReadDto())
                 : TypedResults.BadRequest();
 
     }

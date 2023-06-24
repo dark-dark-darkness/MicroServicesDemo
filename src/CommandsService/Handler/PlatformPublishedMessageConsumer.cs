@@ -1,8 +1,9 @@
-﻿using Mapster;
+﻿
 
 using MassTransit;
 
 using MicroServicesDemo.CommandsService.Data.Repositories;
+using MicroServicesDemo.CommandsService.Mappers;
 using MicroServicesDemo.CommandsService.Models;
 using MicroServicesDemo.PlatformsService.Shared.Messages;
 
@@ -20,9 +21,7 @@ public class PlatformPublishedMessageConsumer : IConsumer<PlatformPublishedMessa
     public async Task Consume(ConsumeContext<PlatformPublishedMessage> context)
     {
 
-        var entity =
-                context.Message
-                       .Adapt<Platform>(new TypeAdapterConfig());
+        var entity = context.Message.MapToEntity();
 
         await _repository.AddAsync(entity, context.CancellationToken);
         await _repository.SaveChangesAsync(context.CancellationToken);

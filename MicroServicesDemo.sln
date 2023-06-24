@@ -32,9 +32,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{E933EAB5-500
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "http", "http", "{B480D1E7-AD41-4E81-AD7F-1EECB39E00FB}"
 	ProjectSection(SolutionItems) = preProject
-		platforms.http = platforms.http
-		http-client.env.json = http-client.env.json
-		commands.http = commands.http
+		http\commands.http = http\commands.http
+		http\http-client.env.json = http\http-client.env.json
+		http\platforms.http = http\platforms.http
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandsService.Shared", "src\CommandsService.Shared\CommandsService.Shared.csproj", "{11388324-B887-4241-A370-747822BA35F7}"
