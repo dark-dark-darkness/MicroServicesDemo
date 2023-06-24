@@ -5,11 +5,11 @@ public sealed class Command
 
     public Guid Id { get; init; }
 
-    public string HowTo { get; init; } = string.Empty;
+    public string HowTo { get; set; } = string.Empty;
 
-    public string CommandLine { get; init; } = string.Empty;
+    public string CommandLine { get; set; } = string.Empty;
 
-    public Guid PlatformId { get; init; }
+    public Guid PlatformId { get; set; }
 
     public Platform? Platform { get; init; }
 }

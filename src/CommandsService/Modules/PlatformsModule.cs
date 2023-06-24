@@ -1,8 +1,7 @@
 ﻿using Carter;
 
-using Mapster;
-
 using MicroServicesDemo.CommandsService.Data.Repositories;
+using MicroServicesDemo.CommandsService.Mappers;
 using MicroServicesDemo.CommandsService.Models;
 using MicroServicesDemo.CommandsService.Shared.Dtos.Platforms;
 
@@ -25,16 +24,22 @@ public class PlatformsModule : ICarterModule
     {
         var group = app.MapGroup("/api/c/platforms");
 
+        group.MapGet("/{platformId:guid}", GetById);
         group.MapGet("/", GetAll);
     }
 
+    private static async Task<Results<Ok<PlatformReadDto>, NotFound>>
+            GetById(Guid platformId,
+                    [FromServices] IBaseRepository<Platform, Guid> repository)
+        => await repository.GetByIdAsync(platformId) is {} result
+                ? TypedResults.Ok(result.MapToReadDto())
+                : TypedResults.NotFound();
+
     private static Ok<IAsyncEnumerable<PlatformReadDto>>
             GetAll([FromServices] IBaseRepository<Platform, Guid> repository)
-    {
-        return TypedResults.Ok(
+        => TypedResults.Ok(
             repository
                    .AsQueryable()
-                   .ProjectToType<PlatformReadDto>()
+                   .ProjectToReadDto()
                    .AsAsyncEnumerable());
-    }
 }

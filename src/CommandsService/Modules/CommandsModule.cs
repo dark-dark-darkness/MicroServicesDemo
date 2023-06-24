@@ -1,8 +1,7 @@
 ﻿using Carter;
 
-using Mapster;
-
 using MicroServicesDemo.CommandsService.Data.Repositories;
+using MicroServicesDemo.CommandsService.Mappers;
 using MicroServicesDemo.CommandsService.Models;
 using MicroServicesDemo.CommandsService.Shared.Dtos.Commands;
 
@@ -37,7 +36,7 @@ public class CommandsModule : ICarterModule
         return await repository
                     .AsQueryable()
                     .Where(c => c.PlatformId == platformId && c.Id == commandId)
-                    .ProjectToType<CommandReadDto>()
+                    .ProjectToReadDto()
                     .FirstOrDefaultAsync() is {} res
                 ? TypedResults.Ok(res)
                 : TypedResults.NotFound();
@@ -58,7 +57,7 @@ public class CommandsModule : ICarterModule
             repository
                    .AsQueryable()
                    .Where(c => c.PlatformId == platformId)
-                   .ProjectToType<CommandReadDto>()
+                   .ProjectToReadDto()
                    .AsAsyncEnumerable());
     }
 
@@ -73,17 +72,13 @@ public class CommandsModule : ICarterModule
             return TypedResults.NotFound();
         }
 
-        var command = createDto
-               .Adapt<Command>(
-                    new TypeAdapterConfig()
-                           .ForType<CommandCreateDto, Command>()
-                           .Map(c => c.PlatformId, _ => platformId)
-                           .Config);
+        var command = createDto.MapToEntity();
+        command.PlatformId = platformId;
 
         await repository.AddAsync(command);
         await repository.SaveChangesAsync();
 
-        var result = command.Adapt<CommandReadDto>();
+        var result = command.MapToReadDto();
         return TypedResults.Created($"/api/c/platforms/{platformId}/commands/{command.Id}", result);
 
     }
